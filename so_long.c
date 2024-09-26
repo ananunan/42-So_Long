@@ -6,7 +6,7 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:31:08 by aeberius          #+#    #+#             */
-/*   Updated: 2024/09/25 15:57:16 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:57:14 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	int		fd;
 
 	if (argc != 2)
 	{
@@ -25,25 +24,52 @@ int	main(int argc, char **argv)
 	else
 	{
 		if (check_map_extension(argv[1]) == 0)
-			ft_printf("Error\nMap file is not a .ber file ☜(꒡⌓꒡)\n");
-		else if (check_map_file_exist(argv[1]) == 0)
-			ft_printf("Error\nMap file does not exist ☜(꒡⌓꒡)\n");
-		else
-		{
-			data = (t_data *)malloc(sizeof(t_data));
-			if (data == NULL)
-				return (1);
-			data->map_data = (t_map_data *)malloc(sizeof(t_map_data));
-			if (data->map_data == NULL)
-				return (1);
-			fd = open(argv[1], O_RDONLY);
-			count_lines(fd, data);
-			fd = open(argv[1], O_RDONLY);
-			extract_from_fd_to_map(fd, data);
-			for(int i = 0; data->map_data->map[i] != NULL; i++)
-				ft_printf("%s", data->map_data->map[i]);
-		}
+			print_error_menssage("Map file must have .ber extension", NULL);
+		if (check_map_file_exist(argv[1]) == 0)
+			print_error_menssage("Map file does not exist", NULL);
+		if (check_map_is_empty(argv[1]) == 0)
+			print_error_menssage("Map file is empty", NULL);
+		value_initialize(&data);
+		count_lines(argv[1], data);
+		count_columns(argv[1], data);
+		extract_from_fd_to_map(argv[1], data);
+		if (check_map_is_rectangular(data->map_data->map) == 0)
+			print_error_menssage("Map is not rectangular", data);
+		if (check_map_enclosed_by_walls(data->map_data->map, data) == 0)
+			print_error_menssage("Map is not enclosed by walls", data);
+		for(int i = 0; data->map_data->map[i] != NULL; i++)
+			ft_printf("%s", data->map_data->map[i]);
+		free_data(data);
 	}
 	return (0);
 }
 
+void	value_initialize(t_data **data)
+{
+	*data = malloc(sizeof(t_data));
+	(*data)->map_data = malloc(sizeof(t_map_data));
+	(*data)->map_data->lines = 0;
+	(*data)->map_data->columns = 0;
+	(*data)->map_data->map = NULL;
+}
+
+void	print_error_menssage(char *menssage, t_data *data)
+{
+	ft_printf("Error\n%s ☜(꒡⌓꒡)\n", menssage);
+	free_data(data);
+	exit(1);
+}
+
+void	free_data(t_data *data)
+{
+	if (data != NULL)
+	{
+		if (data->map_data != NULL)
+		{
+			if (data->map_data->map != NULL)
+				ft_freesplits(data->map_data->map);
+			free(data->map_data);
+		}
+		free(data);
+	}
+}

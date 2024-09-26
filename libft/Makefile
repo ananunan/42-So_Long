@@ -6,7 +6,7 @@
 #    By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:52:29 by aeberius          #+#    #+#              #
-#    Updated: 2024/05/03 18:35:11 by aeberius         ###   ########.fr        #
+#    Updated: 2024/09/26 11:44:01 by aeberius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ C.FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	ft_strdup.c ft_calloc.c ft_substr.c ft_strtrim.c ft_strjoin.c \
 	ft_strmapi.c ft_striteri.c ft_itoa.c ft_split.c ft_printf.c \
 	ft_printchar.c ft_printstring.c ft_printdigits.c ft_printunsigned.c \
-	ft_printpointer.c ft_putchar.c ft_printhex.c get_next_line.c get_next_line_utils.c
+	ft_printpointer.c ft_putchar.c ft_printhex.c get_next_line.c get_next_line_utils.c \
+	ft_freesplits.c
 
 C.FILES_BONUS=ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstdelone_bonus.c \

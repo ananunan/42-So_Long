@@ -6,17 +6,18 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:55 by aeberius          #+#    #+#             */
-/*   Updated: 2024/09/25 15:57:55 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:20:20 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void count_lines(int fd, t_data *data)
+void	count_lines(char *argv, t_data *data)
 {
 	char	*lines;
+	int		fd;
 
-	data->map_data->lines = 0;
+	fd = open(argv, O_RDONLY);
 	lines = get_next_line(fd);
 	while (lines != NULL)
 	{
@@ -26,12 +27,14 @@ void count_lines(int fd, t_data *data)
 	}
 	close(fd);
 }
-void count_columns(int fd, t_data *data)
+
+void	count_columns(char *argv, t_data *data)
 {
 	char	*lines;
 	int		i;
+	int		fd;
 
-	data->map_data->columns = 0;
+	fd = open(argv, O_RDONLY);
 	lines = get_next_line(fd);
 	i = 0;
 	while (lines[i] != '\0')
@@ -39,14 +42,22 @@ void count_columns(int fd, t_data *data)
 		data->map_data->columns++;
 		i++;
 	}
-	free(lines);
+	while (lines != NULL)
+	{
+		free(lines);
+		lines = get_next_line(fd);
+	}
+	close(fd);
 }
-void extract_from_fd_to_map(int fd, t_data *data)
+
+void	extract_from_fd_to_map(char *argv, t_data *data)
 {
 	char	*lines;
 	int		i;
+	int		fd;
 
-	data->map_data->map = (char **)malloc(sizeof(char *) * data->map_data->lines);
+	fd = open(argv, O_RDONLY);
+	data->map_data->map = ft_calloc(sizeof(char *), data->map_data->lines + 1);
 	i = 0;
 	lines = get_next_line(fd);
 	while (lines != NULL)
