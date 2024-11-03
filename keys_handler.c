@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freesplits.c                                    :+:      :+:    :+:   */
+/*   keys_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 11:42:20 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/03 14:15:55 by aeberius         ###   ########.fr       */
+/*   Created: 2024/11/03 15:58:55 by aeberius          #+#    #+#             */
+/*   Updated: 2024/11/03 16:12:59 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	ft_freesplits(char **splits)
+int	keys_handler(int keycode, t_data *data)
 {
-	int	i;
-
-	i = 0;
-	if (splits != NULL)
-	{
-		while (splits[i] != NULL)
-		{
-			free(splits[i]);
-			i++;
-		}
-		free(splits);
-	}
+	if (keycode == XK_Escape)
+		free_all(data);
+	return (0);
 }

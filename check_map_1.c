@@ -6,13 +6,13 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:36:25 by aeberius          #+#    #+#             */
-/*   Updated: 2024/09/26 13:29:31 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/11/03 16:18:26 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_map_file_exist(char *filename)
+int	check_file_exist(char *filename)
 {
 	int	fd;
 
@@ -23,7 +23,7 @@ int	check_map_file_exist(char *filename)
 	return (1);
 }
 
-int	check_map_extension(char *filename)
+int	check_file_extension(char *filename)
 {
 	int	i;
 
@@ -36,58 +36,43 @@ int	check_map_extension(char *filename)
 	return (0);
 }
 
-int	check_map_is_rectangular(char **map) // espaos vazios estao sendo considerdos e impede de ser retangular
+int	check_file_is_empty(char *argv)
 {
-	int	i;
-	int	g;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(map[0]);
-	while (map[i] != NULL)
-	{
-		g = ft_strlen(map[i]);
-		if (g != len)
-			return (0);
-		i++;
-	}
-	if (i == 1)
-		return (0);
-	return (1);
-}{
-	int	i;
-	int	g;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(map[0]);
-	while (map[i] != NULL)
-	{
-		g = ft_strlen(map[i]);
-		if (g != len)
-			return (0);
-		i++;
-	}
-	if (i == 1)
-		return (0);
-	return (1);
-}
-
-int	check_map_is_empty(char *argv)
-{
-	int		i;
 	int		fd;
 	char	*line;
 
-	i = 0;
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
 		close(fd);
+		free(line);
 		return (0);
 	}
 	close(fd);
+	free(line);
+	return (1);
+}
+
+int	check_map_is_rectangular(char **map)
+{
+	int				i;
+	size_t			g;
+	size_t			len;
+
+	i = 0;
+	len = ft_strlen(map[0]) - 1;
+	while (map[i] != NULL)
+	{
+		g = 0;
+		while (map[i][g] != '\0' && map[i][g] != '\n' && map[i][g] != ' ')
+			g++;
+		if (g != len)
+			return (0);
+		i++;
+	}
+	if (i == 1)
+		return (0);
 	return (1);
 }
 
