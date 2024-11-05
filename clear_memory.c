@@ -3,58 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   clear_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:59:51 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/03 16:27:10 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:35:04 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_data(t_data *data)
+void free_images(t_data *data)
 {
-	if (data != NULL)
+	int i;
+
+	i = 0;
+	while (i < 6)
 	{
-		if (data->map_data != NULL)
-		{
-			if (data->map_data->map != NULL)
-				ft_freesplits(data->map_data->map);
-			if (data->map_data->dummy_map != NULL)
-				ft_freesplits(data->map_data->dummy_map);
-			free(data->map_data);
-		}
-		if (data->content != NULL)
-			free(data->content);
-		free(data);
+		if (data->img[i])
+			mlx_destroy_image(data->mlx, data->img[i]);
+		i++;
 	}
+	free(data->img);
 }
 
-void	free_mlx(t_data *data)
-
+void free_all(t_data *data)
 {
-	if (data != NULL)
+	int i;
+
+	if (data->img)
+		free_images(data);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
 	{
-		if (data->mlx != NULL)
-			mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-}
-/*
-void	free_img(t_img *img)
-{
-	if (img != NULL)
+	if (data->map_data)
 	{
-		if (img->img != NULL)
-			mlx_destroy_image(img->mlx, img->img);
+		i = 0;
+		while (i < data->map_data->lines)
+		{
+			free(data->map_data->map[i]);
+			free(data->map_data->dummy_map[i]);
+			i++;
+		}
+		free(data->map_data->map);
+		free(data->map_data->dummy_map);
+		free(data->map_data);
 	}
-}*/
-
-void	free_all(t_data *data)
-{
-
-	free_mlx(data);
-	free_data(data);
-	exit(1);
-	//free_img(img);
+	if (data->content)
+		free(data->content);
+	free(data);
+	exit(0);
 }
