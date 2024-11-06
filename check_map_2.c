@@ -6,7 +6,7 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:55 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/03 14:20:59 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:09:15 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	count_columns(char *argv, t_data *data)
 	fd = open(argv, O_RDONLY);
 	lines = get_next_line(fd);
 	i = 0;
-	while (lines[i] != '\0')
+	while (lines[i] != '\0' && lines[i] != '\n')
 	{
 		data->map_data->columns++;
 		i++;

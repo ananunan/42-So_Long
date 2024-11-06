@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:31:08 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/04 15:34:34 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:14:42 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	if (argc != 2)
 	{
@@ -32,9 +32,7 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-#include "so_long.h"
-
-void value_initialize(t_data **data)
+void	value_initialize(t_data **data)
 {
 	*data = ft_calloc(sizeof(t_data), 1);
 	(*data)->map_data = ft_calloc(sizeof(t_map_data), 1);
@@ -50,7 +48,7 @@ void value_initialize(t_data **data)
 	(*data)->map_data->moves = 0;
 }
 
-void print_error_menssage(char *menssage, t_data *data)
+void	print_error_menssage(char *menssage, t_data *data)
 {
 	ft_printf("Error\n%s ☜(꒡⌓꒡)\n", menssage);
 	if (data != NULL)

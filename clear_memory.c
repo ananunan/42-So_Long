@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   clear_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:59:51 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/04 13:35:04 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:20:59 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_images(t_data *data)
+void	free_images(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 6)
@@ -26,10 +26,27 @@ void free_images(t_data *data)
 	free(data->img);
 }
 
-void free_all(t_data *data)
+void	free_map_data(t_map_data *map_data)
 {
-	int i;
+	int	i;
 
+	if (map_data)
+	{
+		i = 0;
+		while (i < map_data->lines)
+		{
+			free(map_data->map[i]);
+			free(map_data->dummy_map[i]);
+			i++;
+		}
+		free(map_data->map);
+		free(map_data->dummy_map);
+		free(map_data);
+	}
+}
+
+void	free_all(t_data *data)
+{
 	if (data->img)
 		free_images(data);
 	if (data->win)
@@ -39,19 +56,7 @@ void free_all(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	if (data->map_data)
-	{
-		i = 0;
-		while (i < data->map_data->lines)
-		{
-			free(data->map_data->map[i]);
-			free(data->map_data->dummy_map[i]);
-			i++;
-		}
-		free(data->map_data->map);
-		free(data->map_data->dummy_map);
-		free(data->map_data);
-	}
+	free_map_data(data->map_data);
 	if (data->content)
 		free(data->content);
 	free(data);

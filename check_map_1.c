@@ -6,7 +6,7 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:36:25 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/03 16:18:26 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:39:22 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_map_enclosed_by_walls(char **map, t_data *data)
 		}
 		else
 		{
-			if (map[i][0] != '1' || map[i][data->map_data->columns - 2] != '1')
+			if (map[i][0] != '1' || map[i][data->map_data->columns - 1] != '1')
 				return (0);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:30:15 by aeberius          #+#    #+#             */
-/*   Updated: 2024/11/04 16:04:05 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:08:58 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_data
 	int			player_img_index;
 }			t_data;
 
-int close_ending(int keycode, t_data *data);
 int		close_window(t_data *data);
 int		check_dummy_map(char **map);
 int		check_map_content(char **map);
@@ -73,6 +72,7 @@ int		check_file_exist(char *filename);
 int		check_file_extension(char *filename);
 int		check_map_is_rectangular(char **map);
 int		keys_handler(int keycode, t_data *data);
+int		close_ending(int keycode, t_data *data);
 int		check_map_components(char **map, t_data *data);
 int		switch_to_main_window(int keycode, t_data *data);
 int		check_map_enclosed_by_walls(char **map, t_data *data);
@@ -85,6 +85,7 @@ void	load_images(t_data *data);
 void	show_end_image(t_data *data);
 void	value_initialize(t_data **data);
 void	graphics_initialize(t_data *data);
+void	free_map_data(t_map_data *map_data);
 void	count_lines(char *argv, t_data *data);
 void	check_utils(char *argv, t_data *data);
 void	count_columns(char *argv, t_data *data);
@@ -94,7 +95,7 @@ void	extract_from_fd_to_map(char *argv, t_data *data);
 void	print_error_menssage(char *menssage, t_data *data);
 void	flood_fill(char **map, int i, int g, t_data *data);
 void	find_player_and_exit_position(char **map, t_data *data);
+void	update_player_position(t_data *data, int new_x, int new_y);
+void	check_exit_and_update(t_data *data, char new_pos);
 
 #endif
-
-
