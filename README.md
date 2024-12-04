@@ -1,9 +1,20 @@
-# 🎶 So_Long: Jigglypuff's Musical Escape! 🌟
+# 🎶 So_Long: 🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
 
 Step into the world of `So_Long`, a delightful game starring **Jigglypuff** on a quest to gather music notes and reach the stage for her grand performance! 🎤✨ 
 
 Will you guide Jigglypuff through the maze and help her shine under the spotlight? Let’s hit the high notes together! 🎵  
 
+---
+## 🎮 Gameplay 
+
+### Start Screen  
+![](assets/Start_Screen.jpeg)  
+---
+### Gameplay Screen
+![](assets/Gameplay_Screen.jpeg)  
+---
+### Final Screen
+![](assets/Final_Screen.jpeg)  
 ---
 
 ## 🌟 **Game Overview**
@@ -58,5 +69,3 @@ Game Development Fun: Dive into coding and game design while creating an adventu
 Music Meets Gameplay: Combining puzzles, music, and a dash of creativity for a fun and rewarding challenge.
 
 Replayability: Tweak the maps, add new obstacles, and make every playthrough a new adventure!
-
-## 🎮 Gameplay 🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
