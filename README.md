@@ -59,4 +59,4 @@ Music Meets Gameplay: Combining puzzles, music, and a dash of creativity for a f
 
 Replayability: Tweak the maps, add new obstacles, and make every playthrough a new adventure!
 
-🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
+## 🎮 Gameplay 🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
