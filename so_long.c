@@ -6,7 +6,7 @@
 /*   By: aeberius <aeberius@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:31:08 by aeberius          #+#    #+#             */
-/*   Updated: 2024/12/13 18:29:53 by aeberius         ###   ########.fr       */
+/*   Updated: 2024/12/13 18:33:16 by aeberius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		print_error_menssage("Invalid number of arguments!\n", NULL);
+		print_error_menssage("Invalid number of arguments!!\n", NULL);
 		return (1);
 	}
 	else
