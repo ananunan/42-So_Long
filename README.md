@@ -1,4 +1,4 @@
-# 🎶 So_Long: 🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
+# So_Long: 🎤💖Let’s help Jigglypuff bring her concert to life! 🎤💖
 
 Step into the world of `So_Long`, a delightful game starring **Jigglypuff** on a quest to gather music notes and reach the stage for her grand performance! 🎤✨ 
 
